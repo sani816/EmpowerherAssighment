@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<style>
+    *{
+        background-color: pink;
+    }
+    button{
+        background-color: rgb(124, 216, 124);
+        font-weight: bolder;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0px 3px 10px grey;
+    }
+    button:hover{
+        background-color: black;
+        color: white;
+    }
+    .para:nth-child(even){
+        color: red;
+        font-style: italic;
+        font-weight: bolder;
+
+    }
+    .para:nth-child(odd){
+        color: darkblue;
+        font-style: oblique;
+        font-weight: bolder;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paragraph</title>
+</head>
+<body>
+    <button id="addpara">Add Paragraph</button>
+     <button id="removepara">Remove Paragraph</button>
+
+     <div id="newpara"></div>
+     <script src="script.js"></script>
+</body>
+</html>
