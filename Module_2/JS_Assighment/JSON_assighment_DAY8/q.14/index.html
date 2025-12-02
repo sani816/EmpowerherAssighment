@@ -1,1 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        *{
+            background-color: rgb(173, 173, 221);
+        }
+        .Complete{
+            text-decoration: line-through;
+            color: black;
+            font-weight: bolder;
+        }
+        .container{
+            height:200px;
+            width: 350px;
+            border: 1px solid black;
+            box-shadow: 0px 5px 12px grey;
+            border-radius:8px;
+            justify-self: center;
+            background-color:rgb(167, 227, 167);
+            padding: 10px;
+            margin-top:20px;
+        }
+        lable{
+            margin-left: 60px;
+            font-weight: bolder;
+            background-color: rgb(167, 227, 167);
+        }
+        button{
+            margin-left: 50px;
+            margin-right: -30px;
+            margin-top: 40px;
+            border-radius: 5px;
+            padding: 4px;
+            background-color: bisque;
+            font-weight: bolder;
+        }
+        button:hover{
+            background-color: black;
+            color: white;
+        }
+        #textbox{
+            background-color: bisque;
+        }
+        h1{
+            text-align: center;
+            margin-top: 60PX;
+            color: brown;
+        }
 
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>
+</head>
+<body>
+      <h1>Todo-List</h1>
+    <div class="container">
+    <lable>Task:</lable>
+   <input type="text" id="textbox" placeholder="enter a task" required><br><br>
+   <lable>search bar:</lable>
+        <input type="text" id="searchbox" placeholder="search here...">
+   <button id="addtask">Add Task</button>
+   <button id="savetask">Save task to localstorage</button>
+   </div>
+   <ul id="tasklist"></ul>
+
+    <script>
+        let taskarr=[]//create task arr
+        let textbox=document.getElementById("textbox")
+
+        //Add button for add the task list to the screen
+        let addtaskbtn=document.getElementById("addtask")
+        addtaskbtn.addEventListener("click",()=>{
+            if(textbox.value===""){
+                alert("please enter the task")
+                return;
+            }
+
+            //Add the task to the task_object
+            let task={
+            Id:Date.now(),
+            Text:textbox.value,
+            completed:false
+           }
+           taskarr.push(task)//push the task to the task_array
+
+        //to store the textbox value create list
+        let list=document.createElement("li")
+
+        // to store the list item
+        let span=document.createElement("span")
+        span.textContent=textbox.value
+        span.className="span"
+
+      // complete button
+        let completebtn=document.createElement("button")
+        completebtn.textContent="Complete"
+        completebtn.onclick=function(){
+        task.completed=!task.completed
+        span.classList.toggle("Complete")
+
+        localStorage.setItem("mytask", JSON.stringify(taskarr));//add to the local storage update the complete value with true or false
+        }
+        
+        //clear button to clear the list 
+        let clearlist=document.createElement("button")
+        clearlist.textContent="Clear"
+        clearlist.onclick=function(){
+           list.remove()
+        }
+
+           // append all the child to the parent child 
+            list.appendChild(span)
+            list.appendChild(completebtn)
+            list.appendChild(clearlist)
+            document.getElementById("tasklist").appendChild(list)// add the list child to the parent child
+             document.getElementById("textbox").value=""
+
+
+        })
+
+        // to search the task thorugh search bar
+          searchbox.addEventListener("keyup", () => {
+          let key = searchbox.value.toLowerCase();
+
+          let allTasks = document.querySelectorAll("#tasklist li");
+
+         allTasks.forEach(li => {
+          let taskText = li.querySelector("span").textContent.toLowerCase();
+
+         li.style.display = taskText.includes(key) ? "block" : "none";
+       });
+       });
+
+         
+         
+        // to save the task into the local storage create save btn
+        let savebtn=document.getElementById("savetask")
+        savebtn.addEventListener("click",()=>{
+            let task1=document.getElementById("textbox").value
+            if(task1===""){
+                alert("empty task")
+                return;
+            }
+            //save the taskarr to the local store
+            localStorage.setItem("mytask",JSON.stringify(taskarr))
+            document.getElementById("textbox").value="" // to clear the input after save the one task
+            alert("your task is store in localstorage successfully")
+
+        })
+        
+
+
+
+    </script>
+</body>
+</html>
