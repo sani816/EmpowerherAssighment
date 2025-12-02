@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        *{
+            background-color: rgb(234, 191, 247);
+        }
+        lable{
+            font-weight: bolder;
+            color: brown;
+        }
+        .div{
+            height:20px;
+            width: 100%;
+            box-shadow: 0px 3px 10px grey;
+            background-color:rgb(246, 240, 240);
+            margin-top: 20px;
+            color: red;
+            font-weight: bolder;
+            padding: 5px;
+            border-radius:7px;
+        }
+        .container{
+            height: 300px;
+            width:400px;
+            box-shadow: 0px 3px 9px grey;
+            border-radius: 10px;
+           justify-self: center;
+           margin-top: 160px;
+           background-color: aqua;
+        }
+        #textarea{
+            margin-top: 20px;
+          margin-left: 90px;
+        }
+        button{
+         margin-top: 20px;
+          margin-left:60px;
+          margin-right: -50px;
+          padding: 5px;
+          border-radius: 10px;
+          background-color: rgb(3, 55, 57);
+          color: white;
+        }
+        h1{
+            text-align: center;
+            background-color: rgb(200, 32, 60);
+        }
 
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+    <h1>This is text area</h1>
+    <textarea id="textarea" placeholder="Enter notes..." ></textarea><br><br>
+    <button id="loadnotes">Load Notes</button>
+    <button id="savenotes">Save Notes</button>
+    <button id="clearlocalnotes">Clear localStorage notes</button>
+   </div>
+    <div id="storenotes"></div>
+    <script>
+        
+
+         let btn3=document.getElementById("savenotes")
+        btn3.addEventListener("click",()=>{
+            let notes=document.getElementById("textarea").value
+            if(notes===""){
+                alert("notes not found")
+            }else{
+                localStorage.setItem("Mynotes",notes)
+                alert("save succefully in local storage")
+            }
+            document.getElementById("textarea").value=""
+            
+        })
+        
+        let btn=document.getElementById("loadnotes")
+        btn.addEventListener("click",()=>{
+            let savenotes=localStorage.getItem("Mynotes")
+            if(!savenotes){
+                alert("empty notes")
+            }else{
+                document.getElementById("textarea").value=savenotes
+            }
+        })
+
+        let clearlocalnotes=document.getElementById("clearlocalnotes")
+        clearlocalnotes.addEventListener("click",()=>{
+         localStorage.removeItem("Mynotes")
+         document.getElementById("textarea").value=""
+            alert("notes clear from local storage")
+        })   
+
+
+    </script>
+</body>
+</html>
