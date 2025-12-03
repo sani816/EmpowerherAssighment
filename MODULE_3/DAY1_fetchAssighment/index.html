@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getData()" id="getdata">Get Data</button>
+    <ul id="todolist"></ul>
+    <script>
+        function getData(){
+            fetch("https://jsonplaceholder.typicode.com/todos")
+            .then(Response=>Response.json())
+            .then(data=>{
+                let first20=data.slice(0,20)
+                localStorage.setItem("todos",JSON.stringify(first20))
+                displayTodo()
+            })
+        }
 
+        // display todo to the UI
+        function displayTodo(){
+            let todos=JSON.parse(localStorage.getItem("todos")) || [];
+            let ul=document.getElementById("todolist")
+            ul.innerHTML=""
+
+            todos.forEach(todo=>{
+                let list=document.createElement("li")
+                list.className="list"
+                list.innerHTML=`
+                Title:${todo.title}
+                <b>Status:${todo.completed?true:false}</b>
+                - <button onclick="deleteBtn(${todo.id})">Delete</button> 
+                `;
+                 ul.appendChild(list)
+            })
+        }
+// Delete a todo
+function deleteBtn(id) {
+  let todos = JSON.parse(localStorage.getItem("todos")) || [];
+let update=todos.filter(todo=>todo.id!==id)
+
+localStorage.setItem("todos",JSON.stringify(update))
+  
+    displayTodo(); 
+}
+displayTodo()
+
+
+
+
+        
+
+    </script>
+</body>
+</html>
