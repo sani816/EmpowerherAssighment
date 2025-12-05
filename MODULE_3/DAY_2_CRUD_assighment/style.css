@@ -1,0 +1,51 @@
+*{
+    background-color: rgb(41, 170, 170);
+    font-style: italic;
+}
+#displayBook{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    gap:20px;
+    justify-self: center;
+   
+}
+.card{
+ height:300px;
+width: 300px;
+box-shadow: 0px 3px 11px grey;
+justify-items: center;
+border-radius: 10px;
+background-color: rgb(139, 32, 50);
+
+}
+img{
+    width: 300px;
+    border-radius: 5px;
+}
+button{
+    margin-left: 55px;
+    margin-right:-40px;
+    background-color: rgb(8, 66, 26);
+    color: white;
+    font-weight: bolder;
+    border-radius: 5px;
+    padding: 6px;
+    width:80px;
+}
+button:hover{
+    background-color: black;
+    color: white;
+}
+.container{
+    height:300px;
+    width: 250px;
+    box-shadow: 0px 3px 11px grey;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgb(228, 228, 240);
+    margin-top:50px;
+}
+h3{
+    background-color:  rgb(228, 228, 240);
+}
