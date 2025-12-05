@@ -10,7 +10,7 @@ let price=document.getElementById("price").value
 
 if(!title||!auther||!price){
     alert("please fill the all field")
-}
+}else{
        fetch(`${URL}.json`,{
         method:"POST",
         body:JSON.stringify({
@@ -27,7 +27,7 @@ if(!title||!auther||!price){
             displayData()
         })
 
-
+    }
 }
 
 function displayData(){
